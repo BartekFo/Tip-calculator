@@ -4,7 +4,7 @@ import {ReactComponent as DollarLogo} from '../../assets/IconDollar.svg';
 import {ReactComponent as PersonLogo} from '../../assets/IconPerson.svg';
 
 export interface iconProps {
-  isDollar: boolean
+  isDollar?: boolean
 }
 
 const StyledIcon = ({isDollar}: iconProps) =>
@@ -13,8 +13,8 @@ const StyledIcon = ({isDollar}: iconProps) =>
   </>;
 
 const Icon = styled(StyledIcon)`
-  width: 1rem;
-  height: 1rem;
+  width: 3rem;
+  height: 2rem;
 `;
 
 export default Icon;

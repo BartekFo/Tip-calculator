@@ -9,6 +9,7 @@ export const fontWeight = {
 
 export const color = {
   primary: 'hsl(172, 67%, 45%)',
+  secondPrimary: 'hsl(171,74%,63%)',
   darkCyan: 'hsl(183, 100%, 15%)',
   darkGrayishCyan: 'hsl(186, 14%, 43%)',
   secondDarkGrayishCyan: 'hsl(184, 14%, 56%)',
