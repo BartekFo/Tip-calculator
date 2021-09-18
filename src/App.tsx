@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import theme from './styles/theme';
+import MainCalculator from './components/calculator/MainCalculator';
+import {ReactComponent as MainLogo} from './assets/logo.svg';
 
-function App() {
+const Main = styled.main`
+  margin-inline: auto;
+  max-width: ${theme.medias['desktop']};
+  text-align: center;
+  margin-block-start: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px
+`;
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Main>
+      <div>
+        <MainLogo />
+      </div>
+      <MainCalculator />
+    </Main>
   );
-}
+};
 
 export default App;
