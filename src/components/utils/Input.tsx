@@ -70,31 +70,60 @@ const Input = ({
   name,
   value,
 }: inputProps) => {
-  const tipCtx = useContext(TipContext);
+  const {
+    updateValues,
+    setIsBillInvalidToTrue,
+    setIsBillInvalidToFalse,
+    setIsNumberOfPeopleInvalidToTrue,
+    setIsNumberOfPeopleInvalidToFalse,
+    setActiveButton,
+  } = useContext(TipContext);
 
   const onChangeHandler = (event: {
     target: {
-      value?: any; name?: any;
+      value?: string | undefined; name?: any;
     };
   }) => {
-    const value = event.target.value;
+    const value: string | undefined = event.target.value;
     const {name} = event.target;
 
-    tipCtx.updateValues(name, value);
+    updateValues(name, value);
+    setActiveButton('');
 
-    console.log(name);
-
-    if (value === 0 && name === 'bill') {
-      tipCtx.setIsBillInvalidToTrue();
-    } else if (value !== 0 && name === 'bill') {
-      tipCtx.setIsBillInvalidToFalse();
-    } else if (value === 0 && name === 'numberOfPeople') {
-      tipCtx.setIsNumberOfPeopleInvalidToTrue();
-    } else if (value !== 0 && name === 'numberOfPeople') {
-      tipCtx.setIsNumberOfPeopleInvalidToFalse();
+    if (value !== undefined &&
+      +value === 0 &&
+      name === 'bill' &&
+      value !== ''
+    ) {
+      setIsBillInvalidToTrue();
+    } else if (
+      value !== undefined &&
+      +value !== 0 &&
+      name === 'bill' ||
+      value === '' &&
+      name === 'bill'
+    ) {
+      setIsBillInvalidToFalse();
+    } else if (
+      value !== undefined &&
+      +value === 0 &&
+      name === 'numberOfPeople' &&
+      value !== ''
+    ) {
+      setIsNumberOfPeopleInvalidToTrue();
+    } else if (
+      value !== undefined &&
+      +value !== 0 &&
+      name === 'numberOfPeople' ||
+      value === '' &&
+      name === 'numberOfPeople'
+    ) {
+      setIsNumberOfPeopleInvalidToFalse();
     }
 
-    console.log(tipCtx.isBillInvalid, tipCtx.isNumberOfPeopleInvalid);
+    if (name === 'selectedCustomTip') {
+      updateValues('selectedTip', '');
+    }
   };
 
 

@@ -13,21 +13,52 @@ const ButtonWrapper = styled.div`
 `;
 
 const ButtonGrid = () => {
-  const tipCtx = useContext(TipContext);
+  const {
+    setActiveButton,
+    updateValues,
+    activeButton,
+    inputValues,
+  } = useContext(TipContext);
+
+  const changeTip = (tipAmount: string) => {
+    updateValues('selectedTip', tipAmount);
+    setActiveButton(tipAmount);
+    updateValues('selectedCustomTip', '');
+  };
 
   return <ButtonWrapper>
-    <Button buttonLabel='5%' />
-    <Button buttonLabel='10%' />
-    <Button buttonLabel='15%' />
-    <Button buttonLabel='25%' />
-    <Button buttonLabel='50%' />
+    <Button
+      buttonLabel='5%'
+      onClick={() => changeTip('5')}
+      active={activeButton === '5'}
+    />
+    <Button
+      buttonLabel='10%'
+      onClick={() => changeTip('10')}
+      active={activeButton === '10'}
+    />
+    <Button
+      buttonLabel='15%'
+      onClick={() => changeTip('15')}
+      active={activeButton === '15'}
+    />
+    <Button
+      buttonLabel='25%'
+      onClick={() => changeTip('25')}
+      active={activeButton === '25'}
+    />
+    <Button
+      buttonLabel='50%'
+      onClick={() => changeTip('50')}
+      active={activeButton === '50'}
+    />
     <Input
       isShort={true}
       hasWholeNumbers={true}
       hasIcon={false}
       placeholder="Custom"
       name="selectedCustomTip"
-      value={tipCtx.inputValues.selectedCustomTip}
+      value={inputValues.selectedCustomTip}
     />
   </ButtonWrapper>;
 };

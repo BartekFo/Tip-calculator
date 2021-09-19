@@ -2,17 +2,24 @@ import React from 'react';
 import styled, {css} from 'styled-components';
 import theme from '../../styles/theme';
 
-const StyledButton = styled.button<{secondary?: boolean, disabled?: boolean}>`
+const StyledButton = styled.button<{
+  secondary?: boolean,
+  disabled?: boolean,
+  active?: boolean
+}>`
   outline: none;
   color: ${({secondary}) => secondary ? 'black' : theme.color['white']};
   padding-block: 5px;
   width: ${({secondary}) => secondary ? '100%' : '110px'};
-  background: ${
-  ({secondary}) =>
-          secondary ?
-            (theme.color['primary']
-            ) : (
-              theme.color['darkCyan'])};
+  ${({active, secondary}) => active && css`
+    background-color: ${theme.color['primary']};
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  ` || !active && secondary && css`
+    background-color: ${theme.color['primary']};
+  ` || !active && !secondary && css`
+    background-color: ${theme.color['darkCyan']};
+  `
+}
   border: none;
   border-radius: 5px;
   font-size: 1.3rem;
@@ -29,8 +36,10 @@ const StyledButton = styled.button<{secondary?: boolean, disabled?: boolean}>`
 }
   
   &:hover {
-    background-color: ${theme.color['secondPrimary']};
-    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+    ${({active}) => !active && css`
+      background-color: ${theme.color['secondPrimary']};
+      box-shadow: 0 10px 20px rgba(0,0,0,.2);
+    `}
   }
   
   &:focus {
@@ -40,13 +49,27 @@ const StyledButton = styled.button<{secondary?: boolean, disabled?: boolean}>`
 `;
 
 interface ButtonProps {
-  buttonLabel: string,
+  buttonLabel: string
   secondary?: boolean
   disabled?: boolean
+  onClick?: () => void
+  active?: boolean
 }
 
-const Button = ({buttonLabel, secondary, disabled}: ButtonProps) =>
-  <StyledButton secondary={secondary} disabled={disabled}>
+const Button = (
+    {
+      buttonLabel,
+      secondary,
+      disabled,
+      onClick,
+      active,
+    }: ButtonProps) =>
+  <StyledButton
+    secondary={secondary}
+    disabled={disabled}
+    onClick={onClick}
+    active={active}
+  >
     {buttonLabel}
   </StyledButton>;
 

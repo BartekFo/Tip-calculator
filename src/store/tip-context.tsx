@@ -7,13 +7,16 @@ const TipContext = React.createContext({
     numberOfPeople: '',
     selectedCustomTip: '',
   },
+  activeButton: '',
   isBillInvalid: false,
   isNumberOfPeopleInvalid: false,
-  updateValues: (name: string, value: number) => {},
+  updateValues: (name: string, value: string | undefined) => {},
   setIsBillInvalidToTrue: () => {},
   setIsBillInvalidToFalse: () => {},
   setIsNumberOfPeopleInvalidToTrue: () => {},
   setIsNumberOfPeopleInvalidToFalse: () => {},
+  resetValues: () => {},
+  setActiveButton: (activeButton: string) => {},
 });
 
 export const TipContextProvider = ({children}: { children: any }) => {
@@ -23,11 +26,28 @@ export const TipContextProvider = ({children}: { children: any }) => {
     numberOfPeople: '',
     selectedCustomTip: '',
   });
-  const [isNumberOfPeopleInvalid, setIsNumberOfPeopleInvalid] = useState(false);
-  const [isBillInvalid, setIsBillInvalid] = useState(false);
+  const [
+    isNumberOfPeopleInvalid,
+    setIsNumberOfPeopleInvalid,
+  ] = useState<boolean>(false);
+  const [isBillInvalid, setIsBillInvalid] = useState<boolean>(false);
+  const [activeButton, setActiveButton] = useState<string>('');
 
-  const updateValues = (name: string, value: number) => {
+  const updateValues = (name: string, value: string | undefined) => {
     setInputValues((prevState) => ({...prevState, [name]: value}));
+  };
+
+  const resetValues = () => {
+    setInputValues({
+      bill: '',
+      selectedTip: '',
+      numberOfPeople: '',
+      selectedCustomTip: '',
+    });
+  };
+
+  const setActiveButtonHandler = (activeButton: string) => {
+    setActiveButton(activeButton);
   };
 
   const setIsBillInvalidToTrue = () => {
@@ -51,11 +71,14 @@ export const TipContextProvider = ({children}: { children: any }) => {
       inputValues,
       isBillInvalid,
       isNumberOfPeopleInvalid,
+      activeButton,
       updateValues,
       setIsBillInvalidToTrue,
       setIsBillInvalidToFalse,
       setIsNumberOfPeopleInvalidToTrue,
       setIsNumberOfPeopleInvalidToFalse,
+      resetValues,
+      setActiveButton: setActiveButtonHandler,
     }
   } >{children}</TipContext.Provider>;
 };
