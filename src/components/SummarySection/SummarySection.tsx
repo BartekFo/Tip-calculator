@@ -6,14 +6,18 @@ import SummaryNumbers from '../SummaryNumbers/SummaryNumbers';
 import TipContext from '../../store/tip-context';
 
 const StyledSection = styled.section`
-  width: 50%;
   background-color: ${theme.color['darkCyan']};
-  border-radius: 10px;
-  padding: 0 35px 25px;
+  width: 100%;
+  border-radius: 15px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  text-align: left;
+  padding: 2rem 1.5rem;
   
+  @media(min-width: ${theme.medias.tablet}) {
+    width: 50%;
+  }
 `;
 
 const SummarySection = () => {

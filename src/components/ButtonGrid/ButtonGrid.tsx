@@ -3,6 +3,7 @@ import Button from '../utils/Button';
 import React, {useContext} from 'react';
 import Input from '../utils/Input';
 import TipContext from '../../store/tip-context';
+import theme from '../../styles/theme';
 
 const ButtonWrapper = styled.div`
   margin-block: 10px 10px;
@@ -10,6 +11,14 @@ const ButtonWrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+  justify-content: center;
+  max-width: 600px;
+  margin-inline: auto;
+  
+  @media (min-width: ${theme.medias.tablet}) {
+    gap: 15px;
+    justify-content: flex-start;
+  }
 `;
 
 const ButtonGrid = () => {

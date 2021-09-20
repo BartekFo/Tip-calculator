@@ -19,7 +19,8 @@ export const color = {
 };
 
 export const medias = {
-  mobile: '375px',
+  mobile: '450px',
+  tablet: '1024px',
   desktop: '1440px',
 };
 

@@ -4,12 +4,21 @@ import H5 from '../utils/H5';
 import ButtonGrid from '../ButtonGrid/ButtonGrid';
 import React, {useContext} from 'react';
 import TipContext from '../../store/tip-context';
+import theme from '../../styles/theme';
 
 const StyledSection = styled.section`
-  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 450px;
+  text-align: left;
+  margin-bottom: 30px;
+
+  @media(min-width: ${theme.medias.tablet}) {
+    width: 50%;
+    margin-bottom: 0;
+    min-height: 0;
+  }
 `;
 
 const CalculateSection = () => {

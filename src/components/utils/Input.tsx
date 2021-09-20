@@ -16,7 +16,7 @@ const InputWrapper = styled.div`
 `;
 
 const StyledInput = styled.input<{isShort: boolean}>`
-  width: ${({isShort}) => isShort ? '110px' : 'calc(100% - 15px)'};
+  width: ${({isShort}) => isShort ? '150px' : '100%'};;
   text-align: right;
   border-radius: 5px;
   background-color: ${theme.color['secondLightGrayishCyan']};
@@ -27,6 +27,10 @@ const StyledInput = styled.input<{isShort: boolean}>`
   position: relative;
   padding: ${({isShort}) => isShort ? '5px 10px' : '5px 15px'};
   border: 2px solid transparent;
+
+  @media(min-width: ${theme.medias.tablet}) {
+    width: ${({isShort}) => isShort ? '130px' : 'calc(100% - 15px)'};
+  }
   
   
   &::placeholder {

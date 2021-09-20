@@ -1,17 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from './styles/theme';
-import MainCalculator from './components/calculator/MainCalculator';
+import MainCalculator from './components/MainCalculator/MainCalculator';
 import {ReactComponent as MainLogo} from './assets/logo.svg';
 
 const Main = styled.main`
-  margin-inline: auto;
-  max-width: ${theme.medias['desktop']};
-  text-align: center;
-  margin-block-start: 150px;
   display: flex;
+  margin-block-start: 60px;
   flex-direction: column;
-  gap: 100px
+  text-align: center;
+  gap: 30px;
+  max-width: 100%;
+  
+  @media(min-width: ${theme.medias.mobile}) {
+    margin-inline: auto;
+    gap: 100px;
+    max-width: ${theme.medias['desktop']};
+    margin-block-start: 150px;
+  }
 `;
 
 

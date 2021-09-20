@@ -8,16 +8,18 @@ const StyledButton = styled.button<{
   active?: boolean
 }>`
   outline: none;
-  color: ${({secondary}) => secondary ? 'black' : theme.color['white']};
-  padding-block: 5px;
-  width: ${({secondary}) => secondary ? '100%' : '110px'};
+  padding-block: 8px;
+  width: ${({secondary}) => secondary ? '100%' : '150px'};
   ${({active, secondary}) => active && css`
     background-color: ${theme.color['primary']};
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    color: black;
   ` || !active && secondary && css`
     background-color: ${theme.color['primary']};
+    color: black;
   ` || !active && !secondary && css`
     background-color: ${theme.color['darkCyan']};
+    color: ${theme.color['white']};
   `
 }
   border: none;
@@ -45,6 +47,10 @@ const StyledButton = styled.button<{
   &:focus {
     background-color: ${theme.color['primary']};
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  }
+  
+  @media (min-width: ${theme.medias.tablet}) {
+    width: ${({secondary}) => secondary ? '100%' : '130px'};
   }
 `;
 
